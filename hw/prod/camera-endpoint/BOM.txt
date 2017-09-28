@@ -1,0 +1,72 @@
+Partlist
+
+Exported from camera-endpoint.brd at 9/27/17 9:23 PM
+
+EAGLE Version 8.3.2 Copyright (c) 1988-2017 Autodesk, Inc.
+
+Assembly variant: 
+
+Part        Value                Package            Library                 Position (mil)        Orientation
+
+ATMEGA328   MEGA8-AI             TQFP32-08          atmel                   (1600 1250)           R0
+C1          0.015uF              C0603              resistor                (2700 750)            R270
+C2          4700pF               C0603              resistor                (2500 500)            MR0
+C3          47pF                 C0603              resistor                (2500 630)            MR0
+C4          0.1uF                C0603              resistor                (2750 500)            R90
+C5          4.7uF                C0603              resistor                (2900 500)            R90
+C6          4.7uF                C0603              resistor                (3050 500)            R90
+C7          0.1uF                C0603              resistor                (2450 450)            R180
+C8          47uF                 C1206              rcl                     (1270 590)            R0
+C9          47pF                 C0603              resistor                (1300 450)            R0
+C10         0.1uF                C0603              resistor                (1550 1150)           MR0
+C11         0.1uF                C0603              resistor                (1550 1250)           MR0
+C12         0.1uF                C0603              resistor                (1900 1200)           R0
+C13         0.1uF                C0603              resistor                (1650 1600)           R0
+C14         0.1uF                C0603              resistor                (400 650)             R0
+C15         10uF                 C0603              resistor                (400 550)             R0
+C16         330uF                E5-8,5             rcl                     (3315 755)            R0
+D1          SS12                 DO214AC            diode                   (3300 200)            MR180
+D2          SS12                 DO214AC            diode                   (3300 400)            MR180
+D3          SS12                 DO214AC            diode                   (3300 200)            R180
+D4          SS12                 DO214AC            diode                   (3300 400)            R180
+D5          B240A                DO-214AC           diode                   (2000 550)            R270
+FTDI_RX     BLUE                 CHIP-LED0603       led                     (250 1050)            R90
+FTDI_TX     BLUE                 CHIP-LED0603       led                     (250 950)             R90
+IC1         FT232RL              SSOP28             ftdichip                (750 550)             R90
+IC2         MAX3488CSA           SO08               maxim                   (3215 1725)           R270
+J1          DCJ0202              DCJ0202            con-jack                (3700 300)            R90
+J2          SBH11-PBPC-D05-RA    SBH11-*-D05-RA     RoboJackets-Connectors  (150 1450)            R270
+JP1         SER_DBG              1X02               pinhead                 (3400 1200)           R90
+JP2         VCC                  1X02               pinhead                 (2950 200)            R0
+JP3         3.3V                 1X02               pinhead                 (2350 200)            R0
+JP4         I2C                  1X02               pinhead                 (2900 1900)           R0
+L1(SRN6045) 10uH                 POWER-CHOKE_WE-TPC rcl                     (1600 550)            R270
+PWR_OK      GREEN                LED5MM             led                     (3750 600)            R0
+R1          1.5k                 R0603              resistor                (3550 950)            R0
+R2          21.0k                R0603              resistor                (2650 500)            MR0
+R3          10.2k 1%             R0603              resistor                (2200 750)            R180
+R4          3.24k 1%             R0603              resistor                (2400 850)            R180
+R5          60                   R0603              resistor                (3550 600)            R0
+R6          10k                  R0603              resistor                (1800 1700)           R90
+R7          4.7k                 R0603              resistor                (2850 1750)           MR90
+R8          4.7k                 R0603              resistor                (2950 1750)           MR90
+R9          320                  R0603              resistor                (400 850)             R180
+R10         320                  R0603              resistor                (400 950)             R180
+R11         320                  R0603              resistor                (400 1050)            R180
+R12         10k                  R0603              resistor                (2200 1350)           R270
+R13         10k                  R0603              resistor                (2300 1250)           R270
+R14         10k                  R0603              resistor                (2200 1200)           R90
+R15         10k                  R0603              resistor                (2100 1150)           R90
+R16         470                  R0603              resistor                (1000 850)            R90
+R17         470                  R0603              resistor                (1150 850)            R90
+R18         374k 1%              R0603              resistor                (2850 750)            R0
+R19         102k 1%              R0603              resistor                (2850 650)            R180
+RECT_OK     RED                  LED5MM             led                     (3750 900)            R0
+RS485_RX                         W237-102           con-wago-500            (3750 1700)           R90
+RS485_TX                         W237-102           con-wago-500            (3750 1250)           R90
+S1          SWS004               SMS-004            smd-special             (2800 1250)           R270
+SV1         ICSP                 MA03-2             con-lstb                (2350 1850)           R0
+SV2         FTDI_EXT             MA06-1             con-lstb                (1750 1900)           R0
+U1          TPS54231SO8          SO8                bqevm_additional_ti_ics (2450 600)            R90
+USB_PWR_OK  GREEN                CHIP-LED0603       led                     (250 850)             R90
+X1          MINI-USB-UX60-MB-5ST UX60-MB-5ST        con-hirose              (200 450)             R0
