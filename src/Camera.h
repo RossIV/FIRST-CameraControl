@@ -15,6 +15,8 @@ public:
 
     void recall_preset(uint8_t number);
 
+    void set_wb_indoor();
+
     inline uint8_t default_preset() const {
         return _default_preset;
     }

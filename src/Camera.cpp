@@ -36,6 +36,10 @@ void Camera::recall_preset(uint8_t number) {
     send_command({0x81, 0x01, 0x04, 0x3F, 0x02, number, 0xFF});
 }
 
+void Camera::set_wb_indoor() {
+    send_command({0x81, 0x01, 0x04, 0x35, 0x01, 0xFF});
+}
+
 void Camera::rotate(double pan, double tilt) {
     uint8_t pan_power = static_cast<uint8_t>(pan_max() * abs(pan));
     pan_power = max(pan_power, static_cast<uint8_t>(1));
@@ -196,4 +200,6 @@ void Camera::tcp_connect_with_timeout(const std::string &host, const std::string
     if (ec || !_socket.is_open())
         throw boost::system::system_error(
                 ec ? ec : boost::asio::error::operation_aborted);
+
+    set_wb_indoor();
 }
