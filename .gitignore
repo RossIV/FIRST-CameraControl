@@ -102,4 +102,4 @@ fabric.properties
 *.swp
 
 # binary
-build/FIRST_CameraControl
+build/
