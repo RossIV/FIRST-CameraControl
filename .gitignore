@@ -100,3 +100,6 @@ fabric.properties
 
 # vim
 *.swp
+
+# binary
+build/

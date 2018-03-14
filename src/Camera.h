@@ -47,20 +47,14 @@ public:
 
     void stop();
 
+    void reconnect();
+
     inline std::string name() const {
         return _name;
     }
 
     inline std::string address() const {
 	return _address;
-    }
-
-    inline uint8_t default_preset() {
-	return _default_preset;
-    }
-
-    inline boost::asio::io_service& io_service() const {
-        return _io_service;
     }
 
     static inline uint8_t pan_max() {

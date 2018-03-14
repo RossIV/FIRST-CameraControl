@@ -151,6 +151,20 @@ void Camera::send_command(std::vector<uint8_t> command) {
     }
 }
 
+void Camera::reconnect() {
+    if (_socket.is_open()) {
+        _socket.close();
+    }
+
+    try {
+        tcp_connect_with_timeout(_address, "5678", boost::posix_time::milliseconds(10));
+    } catch (const boost::system::system_error &e) {
+        if (e.code() == boost::asio::error::operation_aborted) {
+            cerr << "ERROR: Connection to camera " << _name << " timed out." << endl;
+        }
+    } 
+}
+
 void Camera::tcp_connect_with_timeout(const std::string &host, const std::string &service,
                                       boost::posix_time::time_duration timeout) {
     tcp::resolver::query query{host, service};
