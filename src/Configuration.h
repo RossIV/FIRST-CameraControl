@@ -5,20 +5,20 @@
 #include <vector>
 
 struct CameraDetails {
-    std::string name;
-    std::string ip_address;
-    uint8_t default_preset = 0;
+	std::string name;
+	std::string ip_address;
+	uint8_t default_preset = 0;
 };
 
 class Configuration {
 public:
 
-    Configuration(std::string filepath);
+	Configuration(std::string filepath);
 
-    const std::vector<CameraDetails> &cameras() const;
+	const std::vector<CameraDetails> &cameras() const;
 
 private:
-    std::vector<CameraDetails> _cameras;
+	std::vector<CameraDetails> _cameras;
 
 };
 

@@ -6,35 +6,35 @@
 
 class Controller {
 public:
-    Controller(std::shared_ptr<Joystick> joystick = nullptr, std::shared_ptr<Camera> camera = nullptr);
+	Controller(std::shared_ptr<Joystick> joystick = nullptr, std::shared_ptr<Camera> camera = nullptr);
 
-    void update();
+	void update();
 
-    void change_joystick(std::shared_ptr<Joystick> joystick);
+	void change_joystick(std::shared_ptr<Joystick> joystick);
 
-    void chage_camera(std::shared_ptr<Camera> camera);
+	void chage_camera(std::shared_ptr<Camera> camera);
 
-    std::shared_ptr<Joystick> joystick() const;
+	std::shared_ptr<Joystick> joystick() const;
 
-    std::shared_ptr<Camera> camera() const;
+	std::shared_ptr<Camera> camera() const;
 
 private:
-    std::shared_ptr<Joystick> _joystick;
+	std::shared_ptr<Joystick> _joystick;
 
-    std::shared_ptr<Camera> _camera;
+	std::shared_ptr<Camera> _camera;
 
-    Joystick::HatDirection _prev_hat = Joystick::HatDirection::CENTERED;
-    double _prev_pan = 0;
-    double _prev_tilt = 0;
-    double _prev_speed = 0;
+	Joystick::HatDirection _prev_hat = Joystick::HatDirection::CENTERED;
+	double _prev_pan = 0;
+	double _prev_tilt = 0;
+	double _prev_speed = 0;
 
-    std::array<bool,12> _prev_button;
+	std::array<bool,12> _prev_button;
 
-    void axis_control();
+	void axis_control();
 
-    void button_control();
+	void button_control();
 
-    void set_prev_buttons();
+	void set_prev_buttons();
 
 };
 
