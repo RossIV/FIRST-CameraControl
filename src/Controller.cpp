@@ -9,6 +9,8 @@ Controller::Controller(Joystick&& joystick, Camera&& camera)
     : _joystick(std::move(joystick)),
       _camera(std::move(camera))
 {
+    _joystick.set_deadzone(0, 0.25);
+    _joystick.set_deadzone(1, 0.25);
 }
 
 void Controller::update() {

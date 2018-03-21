@@ -56,11 +56,6 @@ int main(){
         controllers.emplace_back(Joystick(i), Camera(camera_details[i], io_service));
     }
 
-    for(auto &controller : controllers) {
-        controller.joystick().set_deadzone(0, 0.25);
-        controller.joystick().set_deadzone(1, 0.25);
-    }
-
     auto t = chrono::system_clock::now();
 
     while(running){
