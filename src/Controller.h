@@ -10,10 +10,6 @@ public:
 
     void update();
 
-    Joystick& joystick();
-
-    Camera& camera();
-
 private:
     Joystick _joystick;
 

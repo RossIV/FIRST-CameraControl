@@ -80,14 +80,6 @@ void Controller::axis_control() {
     _prev_hat = hat_state;
 }
 
-Joystick& Controller::joystick() {
-    return _joystick;
-}
-
-Camera& Controller::camera() {
-    return _camera;
-}
-
 void Controller::button_control() {
     if (_joystick.button(1) && !_prev_button[1]) {
         cout << "*** reinit camera: " << _camera.name() << "\n";

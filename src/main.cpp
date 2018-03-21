@@ -1,11 +1,10 @@
-#include <signal.h>
+#include <csignal>
 #include <iostream>
 #include <chrono>
 #include <thread>
 #include "Joystick.h"
 #include "Camera.h"
 #include "Controller.h"
-#include "Configuration.h"
 
 using namespace std;
 
@@ -20,7 +19,7 @@ void set_SIGINT_handler() {
     sigIntHandler.sa_handler = signal_handler;
     sigemptyset(&sigIntHandler.sa_mask);
     sigIntHandler.sa_flags = 0;
-    sigaction(SIGINT, &sigIntHandler, NULL);
+    sigaction(SIGINT, &sigIntHandler, nullptr);
 }
 
 int main(){
@@ -37,11 +36,11 @@ int main(){
 
     boost::asio::io_service io_service;
 
-    size_t joystick_count = static_cast<size_t>(Joystick::NumberOfConnectJoysticks());
+    auto joystick_count = static_cast<size_t>(Joystick::NumberOfConnectJoysticks());
 
     cout << "Found " << joystick_count << " joysticks." << endl;
 
-    auto connection_count =  min(joystick_count, static_cast<size_t>(camera_details.size()));
+    auto connection_count =  min(joystick_count, camera_details.size());
 
     cout << "Conecting to " << connection_count << " cameras." << endl;
 

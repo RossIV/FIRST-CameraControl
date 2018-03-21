@@ -56,10 +56,6 @@ public:
         return _name;
     }
 
-    inline std::string address() const {
-	return _address;
-    }
-
     static inline uint8_t pan_max() {
         return 24;
     }
