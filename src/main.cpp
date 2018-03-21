@@ -53,12 +53,12 @@ int main(){
 
     for(size_t i = 0; i < joystick_count && i < camera_details.size(); ++i) {
         cout << "Assigning joystick " << i << " to camera " << camera_details[i].name << "(" << camera_details[i].ip_address << ")." << endl;
-        controllers.emplace_back(make_shared<Joystick>(i), make_shared<Camera>(camera_details[i], io_service));
+        controllers.emplace_back(Joystick(i), Camera(camera_details[i], io_service));
     }
 
     for(auto &controller : controllers) {
-        controller.joystick()->set_deadzone(0, 0.25);
-        controller.joystick()->set_deadzone(1, 0.25);
+        controller.joystick().set_deadzone(0, 0.25);
+        controller.joystick().set_deadzone(1, 0.25);
     }
 
     auto t = chrono::system_clock::now();

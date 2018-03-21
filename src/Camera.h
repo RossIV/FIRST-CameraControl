@@ -10,6 +10,8 @@ class Camera {
 public:
     Camera(const CameraDetails &details, boost::asio::io_service &io_service);
 
+    Camera(Camera &&other) = default;
+
     ~Camera();
 
     void save_preset(uint8_t number);

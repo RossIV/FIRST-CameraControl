@@ -6,22 +6,18 @@
 
 class Controller {
 public:
-    Controller(std::shared_ptr<Joystick> joystick = nullptr, std::shared_ptr<Camera> camera = nullptr);
+    Controller(Joystick&& joystick, Camera&& camera);
 
     void update();
 
-    void change_joystick(std::shared_ptr<Joystick> joystick);
+    Joystick& joystick();
 
-    void chage_camera(std::shared_ptr<Camera> camera);
-
-    std::shared_ptr<Joystick> joystick() const;
-
-    std::shared_ptr<Camera> camera() const;
+    Camera& camera();
 
 private:
-    std::shared_ptr<Joystick> _joystick;
+    Joystick _joystick;
 
-    std::shared_ptr<Camera> _camera;
+    Camera _camera;
 
     Joystick::HatDirection _prev_hat = Joystick::HatDirection::CENTERED;
     double _prev_pan = 0;
