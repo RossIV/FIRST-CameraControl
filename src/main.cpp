@@ -53,7 +53,7 @@ int main(){
 
     for(size_t i = 0; i < joystick_count && i < camera_details.size(); ++i) {
         cout << "Assigning joystick " << i << " to camera " << camera_details[i].name << "(" << camera_details[i].ip_address << ")." << endl;
-        controllers.emplace_back(make_shared<Joystick>(i), make_shared<Camera>(camera_details[i].name, camera_details[i].ip_address, camera_details[i].default_preset, io_service));
+        controllers.emplace_back(make_shared<Joystick>(i), make_shared<Camera>(camera_details[i], io_service));
     }
 
     for(auto &controller : controllers) {

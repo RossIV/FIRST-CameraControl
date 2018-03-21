@@ -4,10 +4,11 @@
 #include <cstdint>
 #include <vector>
 #include <boost/asio.hpp>
+#include "Configuration.h"
 
 class Camera {
 public:
-    Camera(std::string name, std::string ip_address, uint8_t default_preset, boost::asio::io_service &io_service);
+    Camera(const CameraDetails &details, boost::asio::io_service &io_service);
 
     ~Camera();
 

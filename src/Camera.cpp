@@ -5,18 +5,18 @@
 using namespace std;
 using boost::asio::ip::tcp;
 
-Camera::Camera(std::string name, std::string ip_address, uint8_t default_preset, boost::asio::io_service &io_service)
-    : _name(name),
-      _address(ip_address),
-      _default_preset(default_preset),
-      _io_service(io_service),
-      _socket(_io_service)
+Camera::Camera(const CameraDetails &details, boost::asio::io_service &io_service)
+        : _name(details.name),
+          _address(details.ip_address),
+          _default_preset(details.default_preset),
+          _io_service(io_service),
+          _socket(_io_service)
 {
-    cout << "Connecting to camera " << name << " (" << ip_address << ")..." << endl;
+    cout << "Connecting to camera " << _name << " (" << _address << ")..." << endl;
 
     try {
-        tcp_connect_with_timeout(ip_address, "5678", boost::posix_time::milliseconds(10));
-        cout << "Connected to camera " << name << "!" << endl;
+        tcp_connect_with_timeout(_address, "5678", boost::posix_time::milliseconds(10));
+        cout << "Connected to camera " << _name << "!" << endl;
     } catch(const boost::system::system_error &e) {
         if(e.code() == boost::asio::error::operation_aborted) {
             cerr << "ERROR: Connecting to camera " << _name << " timed out." << endl;
