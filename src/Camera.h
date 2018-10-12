@@ -77,12 +77,11 @@ private:
     uint8_t _default_preset;
 
     boost::asio::io_service& _io_service;
-    boost::asio::ip::tcp::socket _socket;
+    boost::asio::ip::udp::socket _socket;
 
     void send_command(std::vector<uint8_t> command);
 
-    void tcp_connect_with_timeout(const std::string& host, const std::string& service,
-                                  boost::posix_time::time_duration timeout);
+    void udp_connect(const std::string& host, const std::string& service);
 
 };
 

@@ -3,7 +3,7 @@
 #include "Camera.h"
 
 using namespace std;
-using boost::asio::ip::tcp;
+using boost::asio::ip::udp;
 
 Camera::Camera(std::string name, std::string ip_address, uint8_t default_preset, boost::asio::io_service &io_service)
     : _name(name),
@@ -15,7 +15,7 @@ Camera::Camera(std::string name, std::string ip_address, uint8_t default_preset,
     cout << "Connecting to camera " << name << " (" << ip_address << ")..." << endl;
 
     try {
-        tcp_connect_with_timeout(ip_address, "5678", boost::posix_time::milliseconds(10));
+        udp_connect(ip_address, "1259");
         cout << "Connected to camera " << name << "!" << endl;
     } catch(const boost::system::system_error &e) {
         if(e.code() == boost::asio::error::operation_aborted) {
@@ -157,7 +157,7 @@ void Camera::reconnect() {
     }
 
     try {
-        tcp_connect_with_timeout(_address, "5678", boost::posix_time::milliseconds(10));
+        udp_connect(_address, "1259");
     } catch (const boost::system::system_error &e) {
         if (e.code() == boost::asio::error::operation_aborted) {
             cerr << "ERROR: Connection to camera " << _name << " timed out." << endl;
@@ -165,13 +165,9 @@ void Camera::reconnect() {
     } 
 }
 
-void Camera::tcp_connect_with_timeout(const std::string &host, const std::string &service,
-                                      boost::posix_time::time_duration timeout) {
-    tcp::resolver::query query{host, service};
-    tcp::resolver::iterator endpoint_iter = tcp::resolver{_io_service}.resolve(query);
-
-    boost::asio::deadline_timer timer{_io_service};
-    timer.expires_from_now(timeout);
+void Camera::udp_connect(const std::string &host, const std::string &service) {
+    udp::resolver::query query{host, service};
+    udp::resolver::iterator endpoint_iter = udp::resolver{_io_service}.resolve(query);
 
     boost::system::error_code ec = boost::asio::error::would_block;
 
