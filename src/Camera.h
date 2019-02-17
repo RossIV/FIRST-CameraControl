@@ -88,7 +88,7 @@ private:
     boost::asio::io_service& _io_service;
     boost::asio::ip::udp::socket _socket;
 
-    void send_command(std::vector<uint8_t> command);
+    void send_command(std::vector<uint8_t> payload);
 
     void udp_connect(const std::string& host, const std::string& service);
 
