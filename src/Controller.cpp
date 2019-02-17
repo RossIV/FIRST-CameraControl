@@ -80,8 +80,13 @@ void Controller::axis_control() {
             _camera->zoom(Camera::ZoomType::TELE);
         } else if (static_cast<int>(hat_state & Joystick::HatDirection::DOWN) > 0) {
             _camera->zoom(Camera::ZoomType::WIDE);
+        } else if (static_cast<int>(hat_state & Joystick::HatDirection::RIGHT) > 0) {
+            _camera->focus(Camera::FocusType::FAR);
+        } else if (static_cast<int>(hat_state & Joystick::HatDirection::LEFT) > 0) {
+            _camera->focus(Camera::FocusType::NEAR);
         } else {
             _camera->zoom(Camera::ZoomType::STOP);
+            _camera->focus(Camera::FocusType::STOP);
         }
     }
 

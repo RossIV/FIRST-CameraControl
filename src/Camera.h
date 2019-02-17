@@ -45,6 +45,15 @@ public:
 
     void zoom(ZoomType type);
 
+    enum class FocusType {
+        STOP,
+        NEAR,
+        FAR,
+        AUTO
+    };
+
+    void focus(FocusType type);
+
     void stop();
 
     void reconnect();

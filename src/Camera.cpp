@@ -15,7 +15,7 @@ Camera::Camera(std::string name, std::string ip_address, uint8_t default_preset,
     cout << "Connecting to camera " << name << " (" << ip_address << ")..." << endl;
 
     try {
-        udp_connect(ip_address, "1259");
+        udp_connect(ip_address, "52381");
         cout << "Connected to camera " << name << "!" << endl;
     } catch(const boost::system::system_error &e) {
         if(e.code() == boost::asio::error::operation_aborted) {
@@ -33,7 +33,8 @@ void Camera::save_preset(uint8_t number) {
 }
 
 void Camera::recall_preset(uint8_t number) {
-    send_command({0x81, 0x01, 0x04, 0x3F, 0x02, number, 0xFF});
+    //send_command({0x81, 0x01, 0x04, 0x3F, 0x02, number, 0xFF});
+    send_command({0x01, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x1e, 0x81, 0x01, 0x04, 0x3f, 0x02, number, 0xFF});
 }
 
 void Camera::rotate(double pan, double tilt) {
@@ -104,7 +105,7 @@ void Camera::rotate(Camera::RotateType type, double speed_factor) {
             break;
     }
 
-    send_command({0x81,0x01,0x06,0x01,pan_speed,tilt_speed,pan_direction,tilt_direction,0xFF});
+    send_command({0x01, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x5c, 0x81, 0x01, 0x06, 0x01,pan_speed,tilt_speed,pan_direction,tilt_direction,0xFF});
 }
 
 void Camera::zoom(double speed) {
@@ -124,15 +125,38 @@ void Camera::zoom(Camera::ZoomType type) {
     switch(type) {
         case ZoomType::STOP:
             direction = 0x00;
+	    send_command({0x01, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x3a, 0x81, 0x01, 0x04, 0x07, 0x00, 0xff});
             break;
         case ZoomType::TELE:
-            direction = 0x02;
+            direction = 0x00;
+	    send_command({0x01, 0x00, 0x00, 0x0a, 0x00, 0x00, 0x00, 0x3a, 0x81, 0x01, 0x04, 0x47, 0x04, 0x00, 0x00, 0x00, 0x00, 0xff});
             break;
         case ZoomType::WIDE:
-            direction = 0x03;
+	    direction = 0x00;
+            send_command({0x01, 0x00, 0x00, 0x0a, 0x00, 0x00, 0x00, 0x3a, 0x81, 0x01, 0x04, 0x47, 0x00, 0x00, 0x00, 0x00, 0x00, 0xff});
             break;
     }
-    send_command({0x81,0x01,0x04,0x07,direction,0xFF});
+}
+
+void Camera::focus(Camera::FocusType type) {
+    uint8_t direction;
+    switch(type) {
+        case FocusType::NEAR:
+            direction = 0x03;
+            break;
+        case FocusType::FAR:
+            direction = 0x02;
+            break;
+        case FocusType::STOP:
+            direction = 0x00;
+            break;
+    };
+    
+    // Set to manual focus
+    send_command({0x01, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x3a, 0x81, 0x01, 0x04, 0x38, 0x03, 0xff});
+    //  Adjust focus
+    send_command({0x01, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x3a, 0x81, 0x01, 0x04, 0x08, direction, 0xff});
+
 }
 
 void Camera::stop() {
@@ -157,7 +181,7 @@ void Camera::reconnect() {
     }
 
     try {
-        udp_connect(_address, "1259");
+        udp_connect(_address, "52381");
     } catch (const boost::system::system_error &e) {
         if (e.code() == boost::asio::error::operation_aborted) {
             cerr << "ERROR: Connection to camera " << _name << " timed out." << endl;

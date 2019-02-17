@@ -1,10 +1,4 @@
 cameras:
-- name: Blue
-  ip: 198.18.10.21
-  default-preset: 1
-- name: Center
-  ip: 198.18.10.22
-  default-preset: 1
-- name: Red
-  ip: 198.18.10.23 
+- name: BC-THR
+  ip: 10.2.50.100
   default-preset: 1
