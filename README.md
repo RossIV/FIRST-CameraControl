@@ -1,7 +1,7 @@
 # FIRST Camera Control
 
-This repository contains code used by the [Georgia FIRST Robotics Competition](http://gafirst.org/) for remote-controlling [PTZ Optics 12X-SDI](http://ptzoptics.com/12x-sdi/) cameras using [Logitech Extreme 3D Pro](http://gaming.logitech.com/en-us/product/extreme-3d-pro-joystick) joysticks.
- 
+This repository contains code used by the [Georgia FIRST Robotics Competition](http://gafirst.org/) for remote-controlling [PTZ Optics 12X-SDI](http://ptzoptics.com/12x-sdi/) cameras using [Logitech Extreme 3D Pro](http://gaming.logitech.com/en-us/product/extreme-3d-pro-joystick) joysticks. The original code has been modified for use with [Marshall CV620-IP](http://www.marshall-usa.com/cameras/CV620-IP/index.php) cameras.
+
  ## Setup
  
  #### Dependencies
@@ -47,15 +47,21 @@ This repository contains code used by the [Georgia FIRST Robotics Competition](h
  Basic pan-tilt functionality is mapped to the joystick's x and y axes. The speed of these motions is controlled by the paddle at the base of the joystick.
  
  The camera can be zoomed in and out using the direction hat on top of the joystick. Push forward to zoom in, pull back to zoom out.
+
+ The camera can be focused near and far using the direction hat on top of the joystick. Push left to focus near, push right to focus far.
  
  If the camera begins moving unexpectedly, pull the trigger button to send a stop command to the camera.
  
  The camera has the capacity to store 9, user-defined, preset positions. These positions can be recalled using the labeled buttons (3,5-12) on the top and base of the joystick.
   
- The thumb button on the side of the joystick will reset the connection to the camera. This should happen nearly immeidately.
+ The thumb button on the side of the joystick will reset the connection to the camera. This should happen nearly immediately.
  
  #### Troubleshooting
  
  There are a variety of network issues which can cause connection errors between this software and the cameras. In the event of one of these issues, this software will disable the individual camera to prevent the interruption of control for other cameras. If this happens, push the reset button or restart the software once the issue has been resolved. 
+
+ #### Additional Reference
+
+ [Marshall Protocol Spec](http://www.marshall-usa.com/pdf/CV620_RS232-Commands.pdf)
  
  
